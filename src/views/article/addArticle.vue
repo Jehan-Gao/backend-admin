@@ -13,6 +13,14 @@
           @select="handleSelect"
         ></el-autocomplete>
       </el-form-item>
+      <el-form-item label="文章类型">
+        <el-select v-model="docType">
+          <el-option v-for="(item, index) in docsType" :key="index"
+          :label="item.docType"
+          :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="是否置顶">
         <el-switch v-model="article.top"></el-switch>
       </el-form-item>
@@ -27,6 +35,9 @@
 <script>
 import Markdown from "../../components/markdown/markdown-editor"
 import initData from "../../markData.js"
+import api from "../../api/apis/article.js"
+console.log(api)
+
 export default {
   name: "addArticle",
   data () {
@@ -38,7 +49,9 @@ export default {
         content: {}
       },
       initData: initData,
-      restaurants: []
+      restaurants: [],
+      docsType: [],
+      docType: ""
     }
   },
   components: {Markdown},
@@ -77,10 +90,15 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
+    },
+    async fetchDocsType () {
+      const res = await api.fetchDocsType()
+      this.docsType = res.data
     }
   },
   mounted () {
     this.restaurants = this.loadAll()
+    this.fetchDocsType()
   }
 }
 </script>

@@ -1,9 +1,3 @@
-/**
- * Created by WebStorm.
- * User: nirongxu
- * Date: 2020/4/20
- * Description: 文件描述
- */
 export default {
   // 发表文章
   addArticle: "/article/addArticle",

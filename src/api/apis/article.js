@@ -8,6 +8,9 @@ import axios from "../axios"
 import articleUrls from "../urls/article"
 
 export default {
+  fetchDocsType () {
+    return axios.get("/docs_type")
+  },
   // 发表文章
   fetchAddArticle (data) {
     return axios.post(articleUrls.addArticle, data)

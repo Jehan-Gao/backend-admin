@@ -1,16 +1,14 @@
-/**
- * Created by WebStorm.
- * User: nirongxu
- * Date: 2019-01-02
- * Description: 文件描述
- */
 import axios from "axios"
 import Cookies from "js-cookie"
 import NProgress from "nprogress"
 import { Message } from "element-ui"
+
+
 // axios默认配置
 axios.defaults.timeout = 10000 // 超时时间
 axios.defaults.baseURL = process.env.API_HOST
+
+console.log(process.env.API_HOST)
 
 // http request 拦截器
 axios.interceptors.request.use(config => {
@@ -39,7 +37,7 @@ axios.interceptors.response.use(
       })
       return Promise.reject(response)
     } else {
-      return Promise.resolve(response)
+      return Promise.resolve(response.data)
     }
   },
   error => {
